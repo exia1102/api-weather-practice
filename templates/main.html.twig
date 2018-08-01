@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">NY weather</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">weather</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="container pt-5 mt-5">
+	<div class="jumbotron">
+	  <h1 class="display-4">NY weather station</h1>
+	  <p class="lead">This is a simple weather unit, you can weather before going out.</p>
+	  <hr class="my-4">
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Your city</label>
+	    <input type="email" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Enter city" name="city">
+	  </div>
+	  <a class="btn btn-primary btn-lg" href="#" role="button" onclick="searchWeather()">Search</a>
+	<div id="result"class="text-primary pt-2">
+	</div>
+	</div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+function searchWeather(){
+	let city= $("#city").val();
+	let appid= '5f4e4991df1f399b792a28bb6970e630';
+	let url="http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+appid;
+	console.log(url);
+	$.get(
+		url,
+		function(data){
+			// console.log(data.main.temp);
+			// console.log(data.weather[0].main);
+			let result = `
+				<ul>
+					<li>City:` + city + `
+					</li>
+					<li>Weather: `+ data.weather[0].main +`
+					</li>
+					<li>Temp:`+ (data.main.temp-273.15).toFixed(2)+`
+					</li>
+				</ul>
+			`;
+			$('#result').html(result);
+		}
+		)
+}
+		
+	// $.get(
+	// 	"ajax/test.html"
+
+
+
+	// 	);
+
+
+
+</script>
+
+
+
+ </body>
+
+
+
+
+
+
+
+</html>
